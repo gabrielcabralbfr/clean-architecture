@@ -10,7 +10,7 @@ export class Connection {
     public static getInstance = () => Connection.instance;
 
     constructor () {
-      this.client = new MongoClient(this.uri)
+      this.client = new MongoClient(this.uri, { useUnifiedTopology: true })
     }
 
     async connect () {
