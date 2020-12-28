@@ -5,7 +5,7 @@ import { Connection } from '../database/connection'
 
 export class MongoDbRepository implements IRepository<User> {
   public uri: string = 'mongodb://root:rootpassword@localhost:27017'
-  public client: MongoClient
+  public client!: MongoClient
   private _collection!: Collection
   private _db!: Db
 
