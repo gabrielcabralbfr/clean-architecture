@@ -1,8 +1,8 @@
-import { MongoDbUsersRepository } from '../../../repositories/MongoDbUsersRepository'
+import { MongoDbRepository } from '../../../repositories/MongoDbRepository'
 import { ListUsersController } from './list-users.controller'
 import { ListUsersUseCase } from './list-users.usecase'
 
-const mongoDbRepository = new MongoDbUsersRepository()
+const mongoDbRepository = new MongoDbRepository('users')
 
 const listUsersUseCase = new ListUsersUseCase(mongoDbRepository)
 

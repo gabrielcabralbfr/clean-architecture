@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-constructor */
 import { User } from '../../../entities/User'
-import { IUserRepository } from '../../../repositories/IUserRepository'
+import { IRepository } from '../../../repositories/interfaces/IRepository'
 
 export class CreateUserUseCase {
-  constructor (private repository: IUserRepository) {
+  constructor (private repository: IRepository<User>) {
   }
 
   async execute (data: Omit<User, '_id'>): Promise<User> {
