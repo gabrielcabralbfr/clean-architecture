@@ -1,6 +1,7 @@
 import { User } from '../entities/User'
 import { IRepository } from './interfaces/IRepository'
 import { MongoClient, Collection, Db } from 'mongodb'
+import { Connection } from '../database/connection'
 
 export class MongoDbRepository implements IRepository<User> {
   public uri: string = 'mongodb://root:rootpassword@localhost:27017'
@@ -10,12 +11,13 @@ export class MongoDbRepository implements IRepository<User> {
 
   // eslint-disable-next-line no-useless-constructor
   constructor (private collectionName: string) {
-    this.client = new MongoClient(this.uri)
     this.connect()
   }
 
   async connect () {
-    await this.client.connect()
+    // await this.client.connect()
+    this.client = await Connection.getInstance().getClient()
+
     this._db = this.client.db('myCondo')
     this._collection = this._db.collection(this.collectionName)
   }
