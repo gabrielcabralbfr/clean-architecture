@@ -35,4 +35,11 @@ export class MongoDbRepository implements IRepository<User> {
     const [user] = users.filter((user: User) => user.email === email)
     return user
   }
+
+  async login (loginData: User): Promise<User | null> {
+    const user = await this.findByEmail(loginData.email)
+    if (!user) return null
+    const correctPassword = user.password === loginData.password
+    return correctPassword ? user : null
+  }
 }
