@@ -5,7 +5,7 @@ export class LoginUseCase {
 // eslint-disable-next-line no-useless-constructor
   constructor (private repository: IRepository<User>) { }
 
-  async execute (data: Partial<User>): Promise<User | null> {
+  async execute (data: Partial<User>): Promise<User> {
     return await this.repository.login(data)
   }
 }
