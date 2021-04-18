@@ -8,7 +8,7 @@ import { listUsersController } from './useCases/User/list-all-users'
 
 const router = Router()
 
-router.get('/', (req: Request, res: Response) => res.json({ healthy: true }))
+router.get('/', (req: Request, res: Response) => res.json({ healthy: true, message: req.t("greeting") }))
 router.post('/users', AuthMiddleware, (req: Request, res: Response) => createUserController.handle(req, res))
 router.get('/users', AuthMiddleware, (req: Request, res: Response) => listUsersController.handle(req, res))
 router.post('/login', (req: Request, res: Response) => loginController.handle(req, res))

@@ -1,0 +1,5 @@
+{
+    "greeting": "hello world!",
+    "error.auth.credentials": "username or password is incorrect",
+    "error.user.notfound": "user not found"
+}

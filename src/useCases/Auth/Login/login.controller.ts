@@ -11,7 +11,13 @@ export class LoginController {
     const data = req.body
     try {
       const user: User = await this.loginUseCase.execute(data)
-      if (!user) res.status(401).json({ message: 'user or password incorrect' })
+
+      if (!user) return res.status(401).json({ message: req.t("error.user.notfound") })
+
+      const correctPassword = user.password === data.password
+      if (!correctPassword) return res.status(401).json({ message: req.t("error.auth.credentials") })
+
+
       const token = Auth.generateToken(user)
       return res.status(200).json({ token })
     } catch (error) {

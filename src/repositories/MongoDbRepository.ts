@@ -38,9 +38,6 @@ export class MongoDbRepository implements IRepository<User> {
 
   async login (loginData: User): Promise<User> {
     const user = await this.findByEmail(loginData.email)
-    if (!user) throw new Error("Unauthorized")
-    const correctPassword = user.password === loginData.password
-    if (!correctPassword) throw new Error("Unauthorized")
     return user
   }
 }
