@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { Auth } from '../../../entities/Auth'
 import { User } from '../../../entities/User'
 import { LoginUseCase } from './login.usecase'
+import bcrypt from 'bcrypt'
 
 export class LoginController {
   // eslint-disable-next-line no-useless-constructor
@@ -14,7 +15,8 @@ export class LoginController {
 
       if (!user) return res.status(401).json({ message: req.t("error.user.notfound") })
 
-      const correctPassword = user.password === data.password
+      const correctPassword = bcrypt.compareSync(data.password, user.password);
+
       if (!correctPassword) return res.status(401).json({ message: req.t("error.auth.credentials") })
 
 

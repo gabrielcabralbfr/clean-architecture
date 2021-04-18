@@ -2,6 +2,7 @@ import { User } from '../entities/User'
 import { IRepository } from './interfaces/IRepository'
 import { MongoClient, Collection, Db } from 'mongodb'
 import { Connection } from '../database/connection'
+import bcrypt from 'bcrypt'
 
 export class MongoDbRepository implements IRepository<User> {
   public uri: string = 'mongodb://root:rootpassword@localhost:27017'
@@ -10,11 +11,11 @@ export class MongoDbRepository implements IRepository<User> {
   private _db!: Db
 
   // eslint-disable-next-line no-useless-constructor
-  constructor (private collectionName: string) {
+  constructor(private collectionName: string) {
     this.connect()
   }
 
-  async connect () {
+  async connect() {
     // await this.client.connect()
     this.client = await Connection.getInstance().getClient()
 
@@ -22,21 +23,21 @@ export class MongoDbRepository implements IRepository<User> {
     this._collection = this._db.collection(this.collectionName)
   }
 
-  async save (user: User): Promise<any> {
+  async save(user: User): Promise<any> {
+    user.password = bcrypt.hashSync(user.password, 10);
     return await this._collection.insertOne(user)
   }
 
-  async findAll (): Promise<any> {
+  async findAll(): Promise<any> {
     return await this._collection.find({}).toArray()
   }
 
-  async findByEmail (email: string): Promise<User> {
-    const users = await this.findAll()
-    const [user] = users.filter((user: User) => user.email === email)
+  async findByEmail(email: string): Promise<User> {
+    const [user] = await this._collection.find({ email: email }).toArray()
     return user
   }
 
-  async login (loginData: User): Promise<User> {
+  async login(loginData: User): Promise<User> {
     const user = await this.findByEmail(loginData.email)
     return user
   }
