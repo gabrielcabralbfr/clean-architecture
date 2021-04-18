@@ -1,6 +1,6 @@
 import { User } from '../entities/User'
 import { IRepository } from './interfaces/IRepository'
-import { MongoClient, Collection, Db } from 'mongodb'
+import { MongoClient, Collection, Db, InsertOneWriteOpResult } from 'mongodb'
 import { Connection } from '../database/connection'
 import bcrypt from 'bcrypt'
 
@@ -23,13 +23,15 @@ export class MongoDbRepository implements IRepository<User> {
     this._collection = this._db.collection(this.collectionName)
   }
 
-  async save(user: User): Promise<any> {
+  async save(user: User): Promise<User> {
     user.password = bcrypt.hashSync(user.password, 10);
-    return await this._collection.insertOne(user)
+    const { ops }: InsertOneWriteOpResult<User> = await this._collection.insertOne(user)
+    const [createdUser] = ops
+    return createdUser
   }
 
-  async findAll(): Promise<any> {
-    return await this._collection.find({}).toArray()
+  async findAll(): Promise<User[]> {
+    return await this._collection.find().project({ password: 0 }).toArray()
   }
 
   async findByEmail(email: string): Promise<User> {
