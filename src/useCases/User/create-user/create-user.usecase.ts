@@ -1,21 +1,26 @@
 /* eslint-disable no-useless-constructor */
 import { User } from '../../../entities/User'
+import { ValidationError } from '../../../errors/ValidationError'
 import { IRepository } from '../../../repositories/interfaces/IRepository'
 
 export class CreateUserUseCase {
-  constructor (private repository: IRepository<User>) {
+  constructor(private repository: IRepository<User>) {
   }
 
-  async execute (data: Omit<User, '_id'>): Promise<User> {
-    await this.validate(data)
+  async execute(data: Omit<User, '_id'>): Promise<User> {
+
+    const isValid = await this.validate(data)
+    
+    if (!isValid) {
+      throw new ValidationError({message: "error.validation", statusCode: 400})
+    }
 
     const user = new User(data)
     return this.repository.save(user)
   }
 
-  async validate (user: Omit<User, '_id'>) {
+  async validate(user: Omit<User, '_id'>): Promise<boolean> {
     const alreadyExists = await this.repository.findByEmail(user.email)
-
-    if (alreadyExists) throw new Error('User already exists')
+    return alreadyExists == null
   }
 }
