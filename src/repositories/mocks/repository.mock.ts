@@ -1,5 +1,6 @@
 import { User } from '../../entities/User'
 import { IRepository } from '../interfaces/IRepository'
+import bcrypt from 'bcrypt'
 
 export class fakeRepository implements IRepository<any> {
 
@@ -9,6 +10,7 @@ export class fakeRepository implements IRepository<any> {
 
 
     async save(user: User): Promise<any> {
+        user.password = bcrypt.hashSync(user.password, 10);
         this._db.push(user);
         return user
     }
@@ -22,6 +24,6 @@ export class fakeRepository implements IRepository<any> {
     }
 
     async login(loginData: User): Promise<User> {
-        return loginData
+        return this.findByEmail(loginData.email)
     }
 }

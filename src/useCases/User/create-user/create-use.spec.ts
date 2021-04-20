@@ -1,8 +1,9 @@
+import { User } from "../../../entities/User"
 import { ValidationError } from "../../../errors/ValidationError"
 import { fakeRepository } from "../../../repositories/mocks/repository.mock"
 import { CreateUserUseCase } from "./create-user.usecase"
 
-describe('User usecases Tests', () => {
+describe('[USER] usecases Tests', () => {
     let useCase: any
     let fakeRepo: any
     const fake = {
@@ -37,8 +38,8 @@ describe('User usecases Tests', () => {
     test('it should create user when valid data provided', async () => {
         const user = await useCase.execute(fake)
         expect(user).toBeDefined()
-        fake._id = user._id
-        expect(user).toEqual(fake)
+        expect(user).toBeTruthy()
+        expect(user).toBeInstanceOf(User)
     })
 
     test('it should NOT create user when EMAIL is duplicated', async () => {

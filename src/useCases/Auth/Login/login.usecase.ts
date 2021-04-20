@@ -11,9 +11,11 @@ export class LoginUseCase {
 
   async execute(data: Partial<User>): Promise<string> {
 
-    const user: User = await this.repository.login(data)
-    if (!user) throw new AuthError({ message: "error.user.notfound", statusCode: 401 })
+    let user: User = await this.repository.login(data)
+    if (!user || (Array.isArray(user) && user.length <= 0)) throw new AuthError({ message: "error.user.notfound", statusCode: 401 })
 
+    user = Array.isArray(user) ? user[0]: user
+    
     const correctPassword = bcrypt.compareSync(data.password, user.password);
     if (!correctPassword) throw new AuthError({ message: "error.auth.credentials", statusCode: 401 })
 
