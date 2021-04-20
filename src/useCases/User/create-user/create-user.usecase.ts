@@ -18,6 +18,8 @@ export class CreateUserUseCase {
     const alreadyExists = await this.repository.findByEmail(user.email)
     if (alreadyExists == null) return false
     if (Array.isArray(alreadyExists) && alreadyExists.length > 0) return false
+
+    if (!user.email || !user.name || !user.password) return false
     return true
   }
 }
