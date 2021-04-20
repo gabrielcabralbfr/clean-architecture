@@ -3,7 +3,7 @@ export class ValidationError extends Error {
     /**
      *
      */
-    constructor({message, statusCode}) {
+    constructor({ message, statusCode }: any) {
         super(message);
         this.statusCode = statusCode
     }

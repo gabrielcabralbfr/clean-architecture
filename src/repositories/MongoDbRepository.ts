@@ -10,15 +10,12 @@ export class MongoDbRepository implements IRepository<User> {
   private _collection!: Collection
   private _db!: Db
 
-  // eslint-disable-next-line no-useless-constructor
   constructor(private collectionName: string) {
     this.connect()
   }
 
   async connect() {
-    // await this.client.connect()
     this.client = await Connection.getInstance().getClient()
-
     this._db = this.client.db('myCondo')
     this._collection = this._db.collection(this.collectionName)
   }
@@ -34,7 +31,7 @@ export class MongoDbRepository implements IRepository<User> {
     return await this._collection.find().project({ password: 0 }).toArray()
   }
 
-  async findByEmail(email: string): Promise<User> {
+  async findByEmail(email: string): Promise<any> {
     const [user] = await this._collection.find({ email: email }).toArray()
     return user
   }

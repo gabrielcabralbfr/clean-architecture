@@ -8,12 +8,7 @@ export class CreateUserUseCase {
   }
 
   async execute(data: Omit<User, '_id'>): Promise<User> {
-
-    const isValid = await this.validate(data)
-    
-    if (!isValid) {
-      throw new ValidationError({message: "error.validation", statusCode: 400})
-    }
+    if (!(await this.validate(data))) throw new ValidationError({ message: "error.validation", statusCode: 400 })
 
     const user = new User(data)
     return this.repository.save(user)
@@ -21,6 +16,8 @@ export class CreateUserUseCase {
 
   async validate(user: Omit<User, '_id'>): Promise<boolean> {
     const alreadyExists = await this.repository.findByEmail(user.email)
-    return alreadyExists == null
+    if (alreadyExists == null) return false
+    if (Array.isArray(alreadyExists) && alreadyExists.length > 0) return false
+    return true
   }
 }
