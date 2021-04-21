@@ -15,7 +15,7 @@ router.post('/users', (req: Request, res: Response, next: NextFunction) => creat
 router.get('/users', AuthMiddleware, (req: Request, res: Response, next: NextFunction) => listUsersController.handle(req, res, next))
 
 
-router.post('/condominiums', (req: Request, res: Response, next: NextFunction) => createCondoController.handle(req, res, next))
+router.post('/condominiums', AuthMiddleware, (req: Request, res: Response, next: NextFunction) => createCondoController.handle(req, res, next))
 router.get('/condominiums', AuthMiddleware, (req: Request, res: Response, next: NextFunction) => listCondosController.handle(req, res, next))
 
 export { router }
