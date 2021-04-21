@@ -4,11 +4,11 @@ import bcrypt from 'bcrypt'
 export class fakeRepository implements IRepository<any> {
 
     _db: Array<any> = []
-    constructor() {
+    constructor(private collection = 'users') {
     }
 
     async save(user: any): Promise<any> {
-        user.password = bcrypt.hashSync(user.password, 10);
+        this.collection === 'users' ? user.password = bcrypt.hashSync(user.password, 10) : null
         this._db.push(user);
         return user
     }

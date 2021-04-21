@@ -26,7 +26,7 @@ describe('[USER] usecases Tests', () => {
     }
     beforeAll(async () => {
 
-        fakeRepo = new fakeRepository()
+        fakeRepo = new fakeRepository('users')
         useCase = new CreateUserUseCase(fakeRepo)
     })
 
