@@ -17,6 +17,7 @@ export class MongoDbRepository implements IRepository<User> {
   async connect() {
     this.client = await Connection.getInstance().getClient()
     this._db = this.client.db('myCondo')
+    
     this._collection = this._db.collection(this.collectionName)
   }
 

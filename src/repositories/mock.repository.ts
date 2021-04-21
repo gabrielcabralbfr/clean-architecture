@@ -1,5 +1,5 @@
-import { User } from '../../entities/User'
-import { IRepository } from '../interfaces/IRepository'
+import { User } from '../entities/User'
+import { IRepository } from './interfaces/IRepository'
 import bcrypt from 'bcrypt'
 
 export class fakeRepository implements IRepository<any> {

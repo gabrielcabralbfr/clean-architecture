@@ -1,0 +1,6 @@
+{
+    "greeting": "Olá mundo!",
+    "error.auth.credentials": "Usuário ou senha incorreto(a)",
+    "error.user.notfound": "Usuário não encontrado",
+    "error.validation": "Erro de validação"
+}

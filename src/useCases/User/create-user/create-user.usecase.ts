@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-constructor */
 import { User } from '../../../entities/User'
-import { ValidationError } from '../../../errors/ValidationError'
+import { ValidationError } from '../../../errors/validation.error'
 import { IRepository } from '../../../repositories/interfaces/IRepository'
 
 export class CreateUserUseCase {
@@ -16,7 +16,7 @@ export class CreateUserUseCase {
 
   async validate(user: Omit<User, '_id'>): Promise<boolean> {
     const alreadyExists = await this.repository.findByEmail(user.email)
-    if (alreadyExists == null) return false
+    if (alreadyExists != null) return false
     if (Array.isArray(alreadyExists) && alreadyExists.length > 0) return false
 
     if (!user.email || !user.name || !user.password) return false

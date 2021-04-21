@@ -1,6 +1,14 @@
 # myCondo
 
-RF
+TODO: 
+- Usar ORM (mongoose/typeORM)
+- Remover erro de lint da lib i18n em req.t(message)
+- 
+
+
+
+
+Endpoints
 - Cadastrar condomínio
 - Cadastrar EventMaker
 - Cadastrar agenda do condomínio

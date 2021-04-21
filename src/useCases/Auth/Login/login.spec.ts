@@ -1,5 +1,5 @@
-import { AuthError } from "../../../errors/Auth/AuthError"
-import { fakeRepository } from "../../../repositories/mocks/repository.mock"
+import { AuthError } from "../../../errors/auth.error"
+import { fakeRepository } from "../../../repositories/mock.repository"
 import { LoginUseCase } from "./login.usecase"
 
 describe("[LOGIN] usecase tests", () => {

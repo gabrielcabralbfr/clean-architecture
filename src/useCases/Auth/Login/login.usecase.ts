@@ -2,7 +2,7 @@ import { User } from '../../../entities/User'
 import { IRepository } from '../../../repositories/interfaces/IRepository'
 import { Auth } from '../../../entities/Auth'
 import bcrypt from 'bcrypt'
-import { AuthError } from '../../../errors/Auth/AuthError'
+import { AuthError } from '../../../errors/auth.error'
 import { NextFunction } from 'express'
 
 export class LoginUseCase {

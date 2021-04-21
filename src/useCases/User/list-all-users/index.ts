@@ -1,4 +1,4 @@
-import { MongoDbRepository } from '../../../repositories/MongoDbRepository'
+import { MongoDbRepository } from '../../../repositories/mongodb.repository'
 import { ListUsersController } from './list-users.controller'
 import { ListUsersUseCase } from './list-users.usecase'
 

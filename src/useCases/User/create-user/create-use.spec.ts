@@ -1,6 +1,6 @@
 import { User } from "../../../entities/User"
-import { ValidationError } from "../../../errors/ValidationError"
-import { fakeRepository } from "../../../repositories/mocks/repository.mock"
+import { ValidationError } from "../../../errors/validation.error"
+import { fakeRepository } from "../../../repositories/mock.repository"
 import { CreateUserUseCase } from "./create-user.usecase"
 
 describe('[USER] usecases Tests', () => {

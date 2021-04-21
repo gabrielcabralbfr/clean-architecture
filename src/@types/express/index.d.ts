@@ -1,5 +1,5 @@
-declare namespace Expresss {
-    interface Request {
-        t: any
-    }
+namespace Express {
+  interface Request {
+    t: any
+  }
 }
