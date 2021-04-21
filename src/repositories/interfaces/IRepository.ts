@@ -4,4 +4,5 @@ export interface IRepository<T> {
     findAll(): Promise<Array<T>>
     findByEmail(email: string): Promise<any>
     login(data: T | Partial<T>): Promise<T>
+    findBy(filter: any): Promise<any>
 }

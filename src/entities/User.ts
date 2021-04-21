@@ -3,11 +3,11 @@ export class User {
   public readonly _id!: string
   public name: string
   public email: string
-  public email_verified: boolean
+  public email_verified: boolean = false
   public phone: string
-  public phone_verified: boolean
+  public phone_verified: boolean = false
   public password: string
-  public isEventMaker: boolean;
+  public is_event_maker: boolean = false
 
   /**
    *

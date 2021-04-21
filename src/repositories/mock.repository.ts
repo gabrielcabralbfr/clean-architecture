@@ -7,7 +7,7 @@ export class fakeRepository implements IRepository<any> {
     constructor() {
     }
 
-    async save(user: User): Promise<any> {
+    async save(user: any): Promise<any> {
         user.password = bcrypt.hashSync(user.password, 10);
         this._db.push(user);
         return user
@@ -22,7 +22,14 @@ export class fakeRepository implements IRepository<any> {
         return item
     }
 
-    async login(loginData: User): Promise<any> {
+    async findBy(filter: any): Promise<any> {
+        const [item] = await this._db.filter(element => {
+            return element[Object.keys(filter)[0]] === element[Object.keys(filter)[1]]
+        })
+        return item
+    }
+
+    async login(loginData: any): Promise<any> {
         return this.findByEmail(loginData.email)
     }
 }
