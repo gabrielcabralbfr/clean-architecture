@@ -6,9 +6,9 @@ export class CreateUserController {
   constructor(private createUserUseCase: CreateUserUseCase) { }
 
   public async handle(request: Request, response: Response, next: NextFunction) {
-    const { name, email, password } = request.body
+    const { name, email, password, phone } = request.body
     try {
-      const user = await this.createUserUseCase.execute({ name, email, password })
+      const user = await this.createUserUseCase.execute({ name, email, password, phone })
       return response.status(201).json({ user })
     } catch (error) {
       next(error)

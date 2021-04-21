@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-constructor */
 import { User } from '../../../entities/User'
 import { ValidationError } from '../../../errors/validation.error'
 import { IRepository } from '../../../repositories/interfaces/IRepository'
