@@ -3,6 +3,7 @@ import { AuthMiddleware } from './middlewares/auth.middleware'
 import { loginController } from './useCases/Auth/Login'
 import { createCondoController } from './useCases/Condominium/create-condo'
 import { listCondosController } from './useCases/Condominium/list-all-condos'
+import { createEventController } from './useCases/Event/create-event'
 import { createUserController } from './useCases/User/create-user'
 import { listUsersController } from './useCases/User/list-all-users'
 
@@ -17,5 +18,8 @@ router.get('/users', AuthMiddleware, (req: Request, res: Response, next: NextFun
 
 router.post('/condominiums', AuthMiddleware, (req: Request, res: Response, next: NextFunction) => createCondoController.handle(req, res, next))
 router.get('/condominiums', AuthMiddleware, (req: Request, res: Response, next: NextFunction) => listCondosController.handle(req, res, next))
+
+
+router.post('/events', AuthMiddleware, (req: Request, res: Response, next: NextFunction) => createEventController.handle(req, res, next))
 
 export { router }

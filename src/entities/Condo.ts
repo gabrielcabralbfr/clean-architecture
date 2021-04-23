@@ -17,6 +17,7 @@ export class Condo {
     public availabilities: Array<Availability>
     public condo_manager_id: number
     public available_area: string
+    public reference: string
     /**
      *
      */
