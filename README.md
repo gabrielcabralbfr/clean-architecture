@@ -1,10 +1,9 @@
 # myCondo
 
 Endpoints
-- ~Cadastrar condomínio~
-- ~Cadastrar EventMaker~
-- Cadastrar agenda do condomínio
-- Cadastrar agenda do usuário
+- ~Cadastrar Condomínio~
+- ~Cadastrar Usuário~
+- Cadastrar Evento (agenda do condomínio/usuário)~
 - Listar condomínios que possuem agenda cadastrada, ordenado por PROXIMIDADE
 
 
