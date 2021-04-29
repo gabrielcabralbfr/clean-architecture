@@ -9,8 +9,8 @@ TODO:
 
 
 Endpoints
-- Cadastrar condomínio
-- Cadastrar EventMaker
+- ~Cadastrar condomínio~
+- ~Cadastrar EventMaker~
 - Cadastrar agenda do condomínio
 - Listar condomínios que possuem agenda cadastrada, ordenado por PROXIMIDADE
 
