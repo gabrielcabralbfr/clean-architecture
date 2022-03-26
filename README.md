@@ -4,3 +4,4 @@
 - DataMapper Pattern (Repository)
 - Singleton pattern implemented
 - Docker
+- i18n
