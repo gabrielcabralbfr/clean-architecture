@@ -3,3 +3,4 @@
 - Mongo + Mongoose 
 - DataMapper Pattern (Repository)
 - Singleton pattern implemented
+- Docker
